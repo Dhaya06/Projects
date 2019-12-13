@@ -1,0 +1,9 @@
+---
+applications:
+- name: CSI-JAVA-RCMWORKLIST-02
+  instances: 1
+  memory: 2G
+  path: target/csi-rcm-worklist-1.0-SNAPSHOT.jar
+services:
+ - RabbitMQService
+ - CSI-DBR-RCMWORKLIST-01

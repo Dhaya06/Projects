@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: rcm-claims-data-import
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: rcm
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  http:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

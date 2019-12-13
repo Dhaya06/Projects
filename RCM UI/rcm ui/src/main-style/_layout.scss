@@ -1,0 +1,87 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+    background: #edf1f5;
+    padding-top: 0px;
+  }
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: -250px;
+    top: 60px;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar .nav {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .nav-item {
+    width: 100%;
+  }
+  
+  .sidebar .nav-item + .nav-item {
+    margin-left: 0;
+  }
+  
+  .sidebar .nav-link {
+    border-radius: 0;
+  }
+  
+  /* The side navigation menu */
+  .sidenav {
+      height: 100%; /* 100% Full-height */
+      width: 185px; /* 0 width - change this with JavaScript */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Stay on top */
+      top: 0; /* Stay at the top */
+      left: -185px;
+      background-color: #858e96; /* Black*/
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 65px; /* Place content 60px from the top */
+      transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      -webkit-box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.15);
+      -moz-box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.15);
+      box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.15);
+  }
+  /* The navigation menu links */
+  .sidenav a {
+      padding: 8px 8px 8px 10px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #fff;
+      display: block;
+      transition: 0.1s;
+      /*border-bottom: 1px solid #424242;*/
+  }
+  .sidenav a.active {
+      background-color: #e6e6e6;
+      color: #000;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover,.sidenav a:focus {
+      color: #fff;
+      background-color: #676c6e;
+      transition: 0.3s background-color ease;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+  }

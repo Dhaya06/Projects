@@ -1,0 +1,158 @@
+<div class="card-header">
+  <div class="card-header-name">
+    <a href="#" onclick="toggleSearch()"><i class="material-icons">keyboard_backspace</i></a>
+    Task List (25)
+  </div>
+  <div class="card-header-config float-right">
+    <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+      <div class="drag&dropelements">
+        <ul>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck120" checked>
+              <label class="custom-control-label" for="customCheck120">Worklist Name</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck121" checked>
+              <label class="custom-control-label" for="customCheck121">Assign Period</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck122" checked>
+              <label class="custom-control-label" for="customCheck122">Process</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck123" checked>
+              <label class="custom-control-label" for="customCheck123">Review</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck124" checked>
+              <label class="custom-control-label" for="customCheck124">Submission</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck125" checked>
+              <label class="custom-control-label" for="customCheck125">Re submission</label>
+            </div> 
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck124" checked>
+              <label class="custom-control-label" for="customCheck124">Status</label>
+            </div> 
+          </li>
+          
+        </ul> 
+        
+        <button type="button" class="btn btn-secondary btn-sm">Reset</button>
+        <button type="button" class="btn btn-danger btn-sm">Save Layout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col">
+      
+      <div class="table-responsive">
+        
+        <!-- CSI UIF developed grid -->
+        <csi-grid [data]="dataSet" [columns]="columns"></csi-grid>
+        
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col">
+                          <nav aria-label="...">
+                            <ul class="pagination float-right">
+                              <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item active">
+                                <span class="page-link">
+                                  2
+                                  <span class="sr-only">(current)</span>
+                                </span>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                              </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </div>    
+                      
+                    </div>
+ 
+<ng-template #claimFilters  let-data="item">
+    <span *ngFor="let claimFilter of data.claimFilters;let lastFilter = last " >
+        <span *ngFor="let filterValue of claimFilter.filterValues;let lastFilterValue = last " >
+            <span  *ngIf="filterValue.name !== undefined" >
+                {{filterValue.name}}
+            </span>
+            <span  *ngIf="filterValue.dateFrom !== undefined && filterValue.dateTo !== undefined" >
+                {{filterValue.dateFrom | date:"yyyy/MM/dd" }} - {{filterValue.dateTo | date:"yyyy/MM/dd"}}
+            </span>
+        </span>
+      <i *ngIf="!lastFilter && !lastFilterValue" class="material-icons">chevron_right</i>
+    </span>
+</ng-template>                    
+
+<ng-template #process  let-data="item">
+    <span *ngFor="let assign of data.process;let last = last " >
+      {{getUserFromId(assign.staffMember.id).name}}
+      <i *ngIf="!last" class="material-icons">chevron_right</i>
+    </span>
+</ng-template>
+<ng-template #review  let-data="item">
+    <span *ngFor="let assign of data.review;let last = last " >
+      {{getUserFromId(assign.staffMember.id).name}}
+      <i *ngIf="!last" class="material-icons">chevron_right</i>
+    </span>
+</ng-template>
+<ng-template #submission  let-data="item">
+    <span *ngFor="let assign of data.submission;let last = last " >
+      {{getUserFromId(assign.staffMember.id).name}}
+      <i *ngIf="!last" class="material-icons">chevron_right</i>
+    </span>
+</ng-template>
+<ng-template #reSubmission  let-data="item">
+    <span *ngFor="let assign of data.reSubmission;let last = last " >
+      {{getUserFromId(assign.staffMember.id).name}}
+      <i *ngIf="!last" class="material-icons">chevron_right</i>
+    </span>
+</ng-template>                    
+<ng-template #updateDelete  let-data="item">
+    <span class="action-link" (click)="update(data.id)" ><i class="material-icons">mode_edit</i></span>
+    <span class="action-link delete"  (click)="delete(data.id,data.name)" ><i class="material-icons">delete_forever</i></span>
+</ng-template>
+
+<ng-template #deletemodel>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">RCM - Worklist</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div   class="modal-body" >
+    Do you want to delete the Wasklist - {{worklistname}}
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="closeModel($event)" >Close</button>
+    <button type="button" class="btn btn-danger"  (click)="deleteWorklist($event)">Delete</button>
+  </div>
+</ng-template>

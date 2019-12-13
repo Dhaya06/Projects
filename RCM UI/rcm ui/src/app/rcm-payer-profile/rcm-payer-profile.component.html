@@ -1,0 +1,56 @@
+<div class="">
+  <div class="">
+      <h5>Payer Profile</h5>
+      
+      <div class="row">
+      <div class="col-sm-12 col-md-12 pt-3">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-name">Payer Profiles</div> 
+              <div class="card-header-config float-right keep-open">  
+                   
+                <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+               
+              </div>  
+            </div>
+            <div class="card-body" id="collapsewidgetpanel">
+              
+              <rcm-new-payer-profile  (onSave)="saveForm($event)" (onClose)="isformshow = false"  *ngIf="isformshow"></rcm-new-payer-profile>
+
+
+
+
+                    <div class="row">
+              <div class="col">
+                  <button *ngIf="!isformshow" (click)="isformshow = true" class="btn btn-danger btn-sm createNewbtn">Create New</button>  
+              </div>
+
+              <div class="col-sm-3">
+                  <div class="form-group">
+                      <div class="input-group input-group-wrapper">
+                        <input type="text" class="form-control" placeholder="Search here">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="material-icons">search</i></span>
+                        </div>
+                      </div>
+                  </div>
+              </div>  
+
+            </div>
+            
+            <div>
+              
+              <rcm-payer-grid></rcm-payer-grid>
+
+            </div>
+            
+          </div>
+
+      </div>
+  </div> 
+      
+      
+  </div>
+  
+  
+</div>

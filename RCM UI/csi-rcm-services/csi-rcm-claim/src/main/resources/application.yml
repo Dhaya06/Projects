@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active:
+    - qa
+  application:
+    name: csi-rcm-claim
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rcm_claim
+    username: uot4ec6j46e92556
+    password: password
+  jpa:
+      database: POSTGRESQL
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    default-property-inclusion: NON_NULL
+    date-format: yyyy/MM/dd
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+postgresql:
+  driver: org.postgresql.Driver
+server:
+  port: 10011
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  context-path: /claim
+feign:
+  hystrix:
+    enabled: true
+logging:
+  file: claim.log
+
+#csi.rcm.rule.parameter.type=com.rcm.system_verification.Encounter
+
+  
+  

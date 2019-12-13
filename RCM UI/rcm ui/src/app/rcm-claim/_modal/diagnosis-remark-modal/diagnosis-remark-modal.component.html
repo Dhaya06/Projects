@@ -1,0 +1,35 @@
+<!-- Add Diagnosis Modal -->
+<div class="modal-header">
+    <h5 class="modal-title" id="diagnosisremarksModalLabel">Remarks for Diagnosis</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form>
+          <div class="form-group">
+                  <label>Primary Diagnosis</label>
+                  <textarea disabled class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultricies neque eget urna porttitor egestas. Quisque at nisi at lectus faucibus scelerisque. Mauris condimentum erat vel justo ullamcorper, ac sollicitudin libero dictum.</textarea> 
+                  <div class="custom-control custom-checkbox custom-checkbox-sm">
+                    <input type="checkbox" class="custom-control-input" id="customCheckremark1">
+                    <label class="custom-control-label" for="customCheckremark1">Add this to Observation Remarks</label>
+                  </div>
+
+          </div>
+          
+          <div class="form-group">
+                  <textarea class="form-control" rows="5"></textarea> 
+                  <div class="custom-control custom-checkbox custom-checkbox-sm">
+                    <input type="checkbox" class="custom-control-input" id="customCheckremark2">
+                    <label class="custom-control-label" for="customCheckremark2">Add this to Observation Remarks</label>
+                  </div>
+          </div>
+          
+          
+          
+      </form>
+  </div>
+  <div class="modal-footer"> 
+    <button type="button" class="btn btn-danger"  >Save</button>  
+    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  </div>

@@ -1,0 +1,10 @@
+
+
+<div *ngIf="isEdit">
+  <span style="color: blue" >{{ params.value}} </span>
+</div>
+<div *ngIf='!isEdit'>
+    
+   <input type="text" [value]="params.value"/>
+
+</div>

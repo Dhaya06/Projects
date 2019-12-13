@@ -1,0 +1,67 @@
+<div class="">
+  <div class="row">
+    <div class="col-md-6">
+        <h5>Home</h5>        
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2">
+        <select class="form-control form-control-sm breadcrum-select" [ngModel]="selectedrevenuSummery" 
+         name="sel2">
+            <option [value]="i" *ngFor="let i of revenuSummery">{{i}}</option>
+        </select>
+    </div>
+    <div class="col-md-2 ">
+        <select class="form-control form-control-sm breadcrum-select" [ngModel]="selectedrevenuSummerySub" 
+        (ngModelChange)="onChange()" name="sel2">
+            <option [value]="i" *ngFor="let i of revenuSummerySub">{{i}}</option>
+        </select>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 pt-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-name">Pages</div>
+          <div class="card-header-config float-right keep-open">
+
+            <a class="" href="#" data-toggle="dropdown">
+              <i class="material-icons">more_vert</i>
+            </a>
+
+          </div>
+        </div>
+        <div class="card-body collapse show" id="collapsewidgetpanel">
+          <div class="row">
+            <div class="col" *ngIf="status">
+              <kendo-chart [categoryAxis]="{ categories: categories }">
+                <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title>
+                <kendo-chart-legend position="bottom" orientation="horizontal"></kendo-chart-legend>
+                <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
+                <kendo-chart-series>
+                  <kendo-chart-series-item *ngFor="let item of series1" type="column" style="smooth" [data]="item.data" [name]="item.name">
+                  </kendo-chart-series-item>
+                </kendo-chart-series>
+              </kendo-chart>
+            </div>
+            <div class="col" *ngIf="!status">
+                <kendo-chart [categoryAxis]="{ categories: categories }">
+                  <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title>
+                  <kendo-chart-legend position="bottom" orientation="horizontal"></kendo-chart-legend>
+                  <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
+                  <kendo-chart-series>
+                    <kendo-chart-series-item *ngFor="let item of series2" type="column" style="smooth" [data]="item.data" [name]="item.name">
+                    </kendo-chart-series-item>
+                  </kendo-chart-series>
+                </kendo-chart>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

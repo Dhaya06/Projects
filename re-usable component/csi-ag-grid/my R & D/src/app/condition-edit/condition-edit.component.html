@@ -1,0 +1,12 @@
+
+<div #container>
+  <div *ngIf="isEdited">
+    <div *ngIf="params.node.selected && selectedBeforeEdit"><input [(ngModel)]="minutes" (focusout)="focusOutFunction()" style="color:mediumblue" type="text" class="form-control" [value]="params.value"></div>
+    <div *ngIf="!params.node.selected || !selectedBeforeEdit">{{params.value}}</div>
+</div>
+<div *ngIf="!isEdited">
+    {{params.value}}
+</div>
+</div>
+
+

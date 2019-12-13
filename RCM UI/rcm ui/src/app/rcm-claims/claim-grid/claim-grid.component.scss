@@ -1,0 +1,28 @@
+card-header-name{
+  padding: .5rem 0.9rem;
+  font-weight: 600;
+}
+.card-header-config{
+
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-header-config a{
+  padding: .5rem;
+  color: #676868;
+  display: inline-block;
+  transition: 0.3s;
+}
+.card-header-config a:hover,.card-header-config a:focus{
+  background-color: #d6e5f1;
+}
+.crud-area .card-group .card[class*='col-']{
+  padding: 0px;
+}
+.card-header-config .dropdown-menu{
+  font-size: 0.8rem;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+

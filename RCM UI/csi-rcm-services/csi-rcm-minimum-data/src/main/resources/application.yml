@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: csi-rcm-minimum-data
+  datasource:
+    url: jdbc:mysql://localhost:3306/rcm_minimum_data_set?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+  jackson:
+    default-property-inclusion: NON_NULL
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+mysql:
+  driver: com.mysql.jdbc.Driver      
+  entitymanager.packagesToScan: com.cloud.persistance.api.mysql.query
+  datasource:
+    initialize: update
+axon:
+  amqp:
+    exchange: minimumdata
+server:
+  port: 7779
+  context-path: /minimumdataset
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
+logging:
+  file: minimumdata.log
+db:
+  configuration: mysql
+orm:
+  configuration: spring
+  
+  

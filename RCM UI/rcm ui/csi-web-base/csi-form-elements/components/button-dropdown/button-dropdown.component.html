@@ -1,0 +1,14 @@
+<div class="btn-group" dropdown [isDisabled]="disabled">
+  <button dropdownToggle type="button" 
+  [class]="'btn dropdown-toggle ' + classes" 
+  [id]="id"
+  [name]="name">
+  {{text}}
+  <span class="caret"></span>
+</button>
+<ul *dropdownMenu class="dropdown-menu" role="menu">
+  <li *ngFor="let item of items" role="menuitem" [class]="item.divider ? 'divider dropdown-divider' : '' ">
+    <a *ngIf="!item.divider" class="dropdown-item" (click)="onItemClick($event, item)">{{item.text}}</a>
+  </li>
+</ul>
+</div>

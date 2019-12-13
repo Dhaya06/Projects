@@ -1,0 +1,19 @@
+<div #container>
+  <div *ngIf="checkBool">
+
+  
+<select >
+    <option>
+        something
+    </option>
+    <option>
+        something2
+    </option>
+    <option value="">something 5</option>
+</select>
+</div>  
+<div *ngIf="!checkBool">
+
+<input type="text" [value]="params.value" (focusout)="focusOutFunction()">
+</div>
+</div>

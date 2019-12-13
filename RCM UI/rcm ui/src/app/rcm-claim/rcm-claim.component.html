@@ -1,0 +1,416 @@
+<div class="">
+    <div class="page-title">
+        <div class="row mb-1">
+            <div class="col">
+                <h5>{{claim.encounterId}}</h5>
+            </div>
+            <div class="col text-right">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> New
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Inprogress
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Complete
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <rcm-claim-header #claimheader></rcm-claim-header>
+        </div>
+    </div>
+
+
+
+    <div class="row pt-2">
+        <div class="col-sm-12 col-md-12">
+            <div class="single_claim_body">
+                <div class="card">
+                    <rcm-claim-body #claimbody></rcm-claim-body>
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-danger float-right" (click)="submitData()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-csi-widjet-side-toggler [ButtonConf]="ButtonConf"></app-csi-widjet-side-toggler>
+
+<!-- <ng-template #template1 >SAMPLE1</ng-template>
+<ng-template #template2>SAMPLE2</ng-template> -->
+
+<ng-template #template1>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Encounter Status</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.encounterStatus}} </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Patient Details</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.patientName}} / {{encounterWidjet.patientGender}} / {{encounterWidjet.patientAge}} </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Insurance Details</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.insuvaraneDetails}}</label>
+            <div *ngIf='policyErrors'>
+                <span class="text-danger summary-error-link">{{policyErrors}}</span>
+            </div>
+            <div *ngIf="companyErrors">
+                <span class="text-danger summary-error-link">{{companyErrors}}</span>
+                <br/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Encounter Details</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.encounterDetails}}</label>
+            <!-- <a href="#" class="text-danger summary-error-link">Encounter Types entered incorrectly</a> -->
+        </div>
+    </div>
+    <!-- <div class="row">
+    <div class="col-md-4">
+        <label class="col-form-label">Service Categories</label>
+    </div>
+    <div class="col-md-8">
+        <label class="col-form-label font-weight-normal">: Consultation / Lab / Radiology / Pharmacy </label>
+        
+    </div>
+</div> -->
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Vital Signs</label>
+        </div>
+        <div class="col-md-8">
+            <span *ngFor='let vitasign of encounterWidjet.vitalSigns; let i = index'>
+
+                <span *ngIf='i==0'>
+                    <label class="col-form-label font-weight-normal">
+                        <b>BP :</b> {{vitasign[0].bloodPressureHigher}}/{{vitasign[0].bloodPressureLower}}
+                    </label>
+                    <label class="col-form-label font-weight-normal">
+                        <b>Pulse :</b>{{vitasign[0].pulseRhythm}}
+                    </label>
+                    <label class="col-form-label font-weight-normal">
+                        <b>Temp :</b>{{vitasign[0].temperatureCelcius}}'C
+                    </label>
+                    <label class="col-form-label font-weight-normal">
+                        <b>Weight :</b>{{vitasign[0].weightKg}}kg
+                    </label>
+                    <label class="col-form-label font-weight-normal">
+                        <b>Height :</b>{{vitasign[0].heightCm}}cm
+                    </label>
+
+
+
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Chief Complaint</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.cheifComplaint}}</label>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Primary Diagnosis</label>
+        </div>
+        <div class="col-md-8">
+            <!-- <label class="col-form-label font-weight-normal">: <b>A00–B99</b> Certain infectious and parasitic diseases</label> -->
+            <span *ngFor='let pdiagnosis of encounterWidjet.primaryDiagnosis'>
+                <label class="col-form-label font-weight-normal">: {{pdiagnosis}}</label>
+                <br/>
+            </span>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Secondary Diagnosis</label>
+        </div>
+        <div class="col-md-8">
+            <!-- <label class="col-form-label font-weight-normal">: <b>G00–G99</b> Diseases of the nervous system</label>
+        <label class="col-form-label font-weight-normal">: <b>H00–H59</b> Diseases of the eye and adnexa</label> -->
+            <span *ngFor='let sdiagnosis of encounterWidjet.secondaryDiagnosis'>
+                <label class="col-form-label font-weight-normal">: {{sdiagnosis}}</label>
+                <br>
+            </span>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Medications</label>
+        </div>
+        <div class="col-md-8">
+            <span *ngFor='let medication of encounterWidjet.medications'>
+                <label class="col-form-label font-weight-normal">: {{medication}}</label>
+                <br/>
+            </span>
+
+            <!-- <label class="col-form-label font-weight-normal">:  Altoprev, Antara, Crestor</label> -->
+
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Orders</label>
+        </div>
+        <div class="col-md-8">
+            <span *ngFor='let order of encounterWidjet.orders'>
+                <label class="col-form-label font-weight-normal">: {{order}}</label>
+                <br/>
+            </span>
+            <!-- <a href="#" class="text-danger summary-error-link">CBC report is missing </a> -->
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="col-form-label">Allergies</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">: {{encounterWidjet.allergies}}</label>
+
+        </div>
+    </div>
+
+    <div class="row" *ngIf="activityErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Activity Errors</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+                <span *ngFor="let activityError of activityErrors">
+                    <li>: {{activityError}}</li>
+                </span>
+
+            </ul>
+        </div>
+    </div>
+    <div class="row" *ngIf="attachmentPathErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Attachment Errors</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let attachmentPathError of attachmentPathErrors">
+                    <li>: {{attachmentPathError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+    <div class="row" *ngIf="diagnosisCodeErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">DiagnosisCode Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let diagnosisCodeError of diagnosisCodeErrors">
+                    <li>: {{diagnosisCodeError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="companyShareErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Company Share Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let companyShareError of companyShareErrors">
+                    <li>: {{companyShareError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+    <div class="row" *ngIf="discountErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Discount Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let discountError of discountErrors">
+                    <li>: {{discountError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="discountPercentageErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Discount Percentage Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let discountPercentageError of discountPercentageErrors">
+                    <li>: {{discountPercentageError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="discountPercentageErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Encounter EndT Type Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let encounterEndTypeError of encounterEndTypeErrors">
+                    <li>: {{encounterEndTypeError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="payerIdErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Payer Id Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let payerIdError of payerIdErrors">
+                    <li>: {{payerIdError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="netAmountErrors.length != 0">
+            <div class="col-md-4">
+                <label class="col-form-label">netAmount Error</label>
+            </div>
+            <div class="col-md-8">
+                <ul class="error-list">
+    
+                    <span *ngFor="let netAmountError of netAmountErrors">
+                        <li>: {{netAmountError}}</li>
+                    </span>
+                </ul>
+            </div>
+        </div>
+
+    
+
+    <div class="row" *ngIf="medicalErrors.length != 0">
+        <div class="col-md-4">
+            <label class="col-form-label">Medical Error</label>
+        </div>
+        <div class="col-md-8">
+            <ul class="error-list">
+
+                <span *ngFor="let medicalError of medicalErrors">
+                    <li>: {{medicalError}}</li>
+                </span>
+            </ul>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #template2>
+    <div class="row" *ngFor='let notes of doctorNoteWidgetArr'>
+            <div class="col-md-4">
+                <label class="col-form-label">{{notes.doctorName}}</label>
+            </div>
+            <div class="col-md-8">
+                <label class="col-form-label font-weight-normal">{{notes.doctorNote}}</label>
+            </div>
+        </div>
+    
+</ng-template>
+
+
+
+
+
+
+<ng-template #template3>
+    <div class="row" *ngFor='let notes of nurseNoteWidjetArr'>
+        <div class="col-md-4">
+            <label class="col-form-label">{{notes.nurseName}}</label>
+        </div>
+        <div class="col-md-8">
+            <label class="col-form-label font-weight-normal">{{notes.nurseNote}}</label>
+        </div>
+    </div>
+
+
+    
+</ng-template>
+
+<ng-template #template4>
+
+</ng-template>
+
+<ng-template #template5>
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Period</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let history of patientHistoryWidjetArr'>
+                <td>
+                    <b>{{history.category}}</b>
+                </td>
+                <td>{{history.period}}</td>
+                <td>{{history.details}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</ng-template>

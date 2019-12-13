@@ -1,0 +1,221 @@
+<form [formGroup]="claimHeader"  >
+    
+<input type="hidden" class="form-control" formControlName="id" >
+<input type="hidden" class="form-control" formControlName="referenceNo" >
+<input type="hidden" class="form-control" formControlName="invoiceNo" >
+<input type="hidden" class="form-control" formControlName="companyShare" >
+<input type="hidden" class="form-control" formControlName="patientShare" >
+<input type="hidden" class="form-control" formControlName="encounterId" >
+<input type="hidden" class="form-control" formControlName="serviceStartTime" >
+<input type="hidden" class="form-control" formControlName="serviceEndTime" >
+
+<div class="single_claim_header">
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-name">Patient Details</div> 
+          
+          <div class="card-header-config float-right keep-open">
+            <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+          </div>  
+        </div>
+        <div class="card-body collapse show" id="collapsewidgetpanel">
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{patient.patientId}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{patient.patientName}}
+                <i class="material-icons {{patient.gender}}-circle">fiber_manual_record</i>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{patient.dob | date: 'yyyy/MM/dd'}} </label>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{claim.serviceStartTime | date:'yyyy/MM/dd'}} (New Visit)</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">2018/01/15 (Last Visited Date)</label>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-name">Insurance Details</div> 
+          <div class="card-header-config float-right keep-open">  
+            <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+          </div>  
+        </div>
+        <div class="card-body collapse show" id="collapsewidgetpanel">
+          
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{claim.payerId}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 label-hidden">
+                <select formControlName="payerId" class="form-control form-control-sm"  (change)="updateComanyList($event)" >
+                  <option *ngFor="let option of isuranceGroups" value="{{ option.id }}">{{ option.name }}</option>
+                </select>
+
+                <!-- <csi-select-box
+                [csiFormGroup] = "claimHeader"
+                [csiControllerName]="'isuranceGroups'" 
+                [options] = "isuranceGroups"
+                [classes] = "'form-control form-control-sm'"
+                ></csi-select-box> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 label-hidden">
+                <select formControlName="companyId" class="form-control form-control-sm" >
+                  <option *ngFor="let option of isuranceCompanies" value="{{ option.id }}">{{ option.name }}</option>
+                </select>
+                <!-- <csi-select-box
+                [csiFormGroup] = "claimHeader"
+                [csiControllerName]="'isuranceCompanies'" 
+                [options] = "isuranceCompanies"
+                [classes] = "'form-control form-control-sm'"
+                ></csi-select-box> -->
+            </div>
+          </div>
+          <div class="row">
+            
+              <div class="col-sm-12 label-hidden">
+                  <select formControlName="policy" class="form-control form-control-sm" >
+                    <option *ngFor="let option of policy" value="{{ option.id }}">{{ option.name }}</option>
+                  </select>
+                  <!-- <csi-select-box
+                  [csiFormGroup] = "claimHeader"
+                  [csiControllerName]="'policy'" 
+                  [options] = "policy"
+                  [classes] = "'form-control is-invalid'"
+                  ></csi-select-box> -->
+              </div>
+          </div>
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <input type="text" class="form-control" formControlName="policyNumber" >
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-name">Clinic Details</div> 
+          <div class="card-header-config float-right keep-open">                                              
+            <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+          </div>  
+        </div>
+        <div class="card-body collapse show" id="collapsewidgetpanel">
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{doctor.reg_no}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{doctor.doctor_name}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            
+            <div class="col-sm-12">
+              <label class="inline-label">{{clinic.clinic_description}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-name">Encounter Details</div> 
+          <div class="card-header-config float-right keep-open">  
+            
+            <a class="" data-toggle="collapse" href="#collapsewidgetpanel"><i class="material-icons">visibility_off</i></a>    
+            <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+          </div>  
+        </div>
+        <div class="card-body collapse show" id="">
+                                          
+            <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Type</label>
+              <div class="col-sm-8  label-hidden">
+                <select formControlName="encounterType" class="form-control form-control-sm">
+                  <option *ngFor="let option of encounterTypes" value="{{ option.id }}">{{ option.name }}</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Start Type</label>
+              <div class="col-sm-8 label-hidden">
+                  <select formControlName="encounterStartType" class="form-control form-control-sm">
+                    <option *ngFor="let option of encounterTypes" value="{{ option.id }}">{{ option.name }}</option>
+                  </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">End Type</label>
+              <div class="col-sm-8 label-hidden">
+                  <select formControlName="encounterEndType" class="form-control form-control-sm">
+                    <option *ngFor="let option of encounterTypes" value="{{ option.id }}">{{ option.name }}</option>
+                  </select>
+              </div>
+            </div>
+            
+            
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label class="inline-label">{{claim.serviceStartTime | date: 'yyyy/MM/dd hh:mm'}} - {{claim.serviceEndTime | date: 'yyyy/MM/dd hh:mm'}}</label>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+       
+              <!-- <div class="col-sm-12">
+                <label class="inline-label">Consultation / Lab / <span class="text-danger">Radiology</span></label>
+              </div> -->
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label class="inline-label text-lg"><b>{{value | currency:'SR ' }}</b></label>
+                <small><a href="#" data-toggle="modal" data-target="#fronofficeremarks">
+                  Remarks
+                </a></small>     
+              </div>
+            </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</form>

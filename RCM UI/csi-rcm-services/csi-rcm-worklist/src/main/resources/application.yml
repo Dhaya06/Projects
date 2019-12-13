@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: csi-rcm-worklist
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/rcm_claim
+#    username: postgres
+#    password: password
+    url: jdbc:postgresql://db-bac893da-898e-4671-aa5d-eeb3f1d83212.c7uxaqxgfov3.us-west-2.rds.amazonaws.com
+    username: u0sl0pmysgdb3gyg
+    password: i0kqviidyzksv3lp62k2xv5ng
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    default-property-inclusion: NON_NULL
+    date-format: yyyy/MM/dd
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+  rabbitmq:
+    host: 10.72.6.45
+    port: 5672
+    username: 007b9fde-0f67-4cda-9bd3-a6e21f661f5f
+    password: 18bqfdtc9hm2mbiipmgdel4sq6
+#hibernate:
+#   dialect: org.hibernate.dialect.PostgreSQLDialect
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect   
+postgresql:
+  driver: org.postgresql.Driver
+#mysql:
+#  driver: com.mysql.jdbc.Driver      
+#  entitymanager.packagesToScan: com.cloud.persistance.api.mysql.query
+#  datasource:
+#    initialize: update
+axon:
+  amqp:
+    exchange: rcmworklist
+server:
+  context-path: /worklist
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: https://csi-eurekaserver.run.aws-usw02-pr.ice.predix.io/
+    register-with-eureka: false
+    fetch-registry: false
+feign:
+  hystrix:
+    enabled: true
+logging:
+  file: worklist.log
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.type.descriptor.sql: trace
+db:
+  configuration: postgresql
+orm:
+  configuration: spring
+csi:
+  rcm:
+    worklist:
+      dateformat: yyyy/MM/dd
+debug: true

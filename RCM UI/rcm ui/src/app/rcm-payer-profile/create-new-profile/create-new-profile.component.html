@@ -1,0 +1,265 @@
+<!-- Following form  
+1.Csi textbox
+2.Csi drodown Added
+-->
+
+<form class="createNewForm" [formGroup]="profileCreateFormGroup" (submit)="savePayerProfile()">
+  <div class="row pb-2">
+    <div class="col">
+      <a (click)="CloseForm($event)">
+        <i class="material-icons">keyboard_backspace</i>
+      </a>
+      <div class="createNewTitle d-inline-block">Create New Profile</div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col">
+
+      <div class="form-group" [ngClass]="{'has-error': message}">
+        <csi-text-box [id]="'profile_name'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'profile_name'" [label]="'Profile Name'"
+          [classes]="'form-control'" [disabled]="false" [placeholder]="'Enter Profile Name'" [validation_rules]="[]"></csi-text-box>
+      </div>
+      <span class="help-block" *ngIf="message">
+        <span class="text-danger"> {{ message }}</span>
+      </span>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'category'" [csiControllerName]="'category'" [label]="'Payer Category'"
+          [disabled]="false" [options]="prayerListItems" [classes]="'form-control'" [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'group_name'" [csiControllerName]="'group_name'" [label]="'Insurance Group'"
+          [disabled]="false" [options]="insurenceGroupListItems" [classes]="'form-control'" [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'company_id'" [csiControllerName]="'company_id'" [label]="'Company Name / ID'"
+          [disabled]="false" [options]="companyNameListItems" [classes]="'form-control'" [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'submission_format'" [csiControllerName]="'submission_format'"
+          [label]="'Submission Format'" [disabled]="false" [options]="submissionFormatListItems" [value]="" [classes]="'form-control'"
+          [validation_rules]='' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+    <div class="col">
+      <div *ngIf="(profileCreateFormGroup.get('submission_format').value == '4')">
+        <div class="form-group" id="submission_format_web">
+          <csi-text-box [csiName]="'submission_url'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'submission_url'"
+            [label]="'Submission URL(End Point)'" [classes]="'form-control'" [disabled]="false" [placeholder]="'Enter URL'"
+            [validation_rules]='rule'></csi-text-box>
+        </div>
+      </div>
+      <div *ngIf="(profileCreateFormGroup.get('submission_format').value == '5')">
+        <div class="form-group" id="submission_format_xml">
+          <csi-text-box [id]="'profile_name'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'submission_template'" [label]="'Submission Template'"
+            [classes]="'form-control'" [disabled]="true" [placeholder]="''"></csi-text-box>
+          <a href="#">
+            <small class="form-text text-primary">Edit XML file</small>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="(profileCreateFormGroup.get('submission_format').value == '1')">
+        <div class="form-group" id="submission_format_json">
+          <csi-text-box [id]="'submission_template_Json'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'submission_template_Json'"
+            [label]="'Submission Template'" [classes]="'form-control'" [disabled]="true" [placeholder]="''"></csi-text-box>
+          <a href="#">
+            <small class="form-text text-primary">Edit JSON file</small>
+          </a>
+        </div>
+      </div>
+
+      <div *ngIf="(profileCreateFormGroup.get('submission_format').value == '2')">
+        <div class="form-group" id="submission_format_db2db">
+          <csi-text-box [id]="'submission_template_db2db'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'submission_template_db2db'"
+            [label]="'Submission Template'" [classes]="'form-control'" [disabled]="true" [placeholder]="''"></csi-text-box>
+          <a href="#">
+            <small class="form-text text-primary">Edit Mapping schema file</small>
+          </a>
+        </div>
+      </div>
+
+      <div *ngIf="(profileCreateFormGroup.get('submission_format').value == '3')">
+        <div class="form-group" id="submission_format_excel">
+
+          <csi-text-box [id]="'submission_template_excel'" [csiFormGroup]="profileCreateFormGroup" [csiControllerName]="'submission_template_excel'"
+            [label]="'Submission Template'" [classes]="'form-control'" [disabled]="true" [placeholder]="''"></csi-text-box>
+          <a href="#">
+            <small class="form-text text-primary">Edit Excel file</small>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'submission_time_period'" [csiControllerName]="'submission_time_period'"
+          [label]="'Submission Time Period'" [disabled]="false" [options]="submissionTimeListItems" [value]="" [classes]="'form-control'"
+          [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+        <small *ngIf="submissionTimeListItems[profileCreateFormGroup.get('submission_time_period').value] != null" class="form-text text-muted">Within {{submissionTimeListItems[profileCreateFormGroup.get('submission_time_period').value].name}} days of completion
+          of the treatments</small>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'resubmission_time_period'" [csiControllerName]="'resubmission_time_period'"
+          [label]="'Re submission Time Period'" [disabled]="false" [options]="reSubmissionTimeListItems" [value]="" [classes]="'form-control'"
+          [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+        <small *ngIf="submissionTimeListItems[profileCreateFormGroup.get('resubmission_time_period').value] != null" class="form-text text-muted">Within {{submissionTimeListItems[profileCreateFormGroup.get('resubmission_time_period').value].name}} days of completion
+          of the treatments</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'submission_date_of_month'" [csiControllerName]="'submission_date_of_month'"
+          [label]="'Submission Date of the month (Deadline)'" [disabled]="false" [options]="submissionDataListItems" [value]=""
+          [classes]="'form-control'" [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'payment_method'" [csiControllerName]="'payment_method'"
+          [label]="'Payment Method'" [disabled]="false" [options]="paymentMethodDataListItems" [value]="" [classes]="'form-control'"
+          [validation_rules]='[]' (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+
+        <csi-select-box [csiFormGroup]="profileCreateFormGroup" [csiName]="'payment_time_period'" [csiControllerName]="'payment_time_period'"
+          [label]="'Payment Time Period'" [disabled]="false" [options]="paymentTimePeriodDataListItems" [value]="" [classes]="'form-control'"
+          (onChange)="selectBoxChange($event)"></csi-select-box>
+
+      </div>
+    </div>
+
+    <!-- <div class="col">
+      <div class="form-group">
+        <label class="col-form-label d-block">Portal Needed</label>
+        <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" ngbRadioGroup formControllerName="is_portal_needed">
+          <label ngbButtonLabel class="btn btn-secondary active"> 
+            <input ngbButton type="radio" [value]="true"> Yes
+          </label>
+          <label ngbButtonLabel class="btn btn-secondary">
+            <input ngbButton type="radio" [value]="false" > No
+          </label>
+        </div>
+      </div>
+      
+    </div> -->
+
+    <div class="col">
+      <div class="form-group">
+        <label class="col-form-label d-block">Portal Needed</label>
+        <div class="btn-group btn-group-sm btn-group-toggle" btnRadioGroup formControlName="is_portal_needed">
+          <label [ngClass]="profileCreateFormGroup.controls.is_portal_needed.value == true ? 'btn btn-secondary active' : 'btn btn-secondary'"
+            btnRadio="true">Yes</label>
+          <label [ngClass]="'btn btn-secondary active'" btnRadio="false">No</label>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- {{profileCreateFormGroup.value | json}} -->
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label class="col-form-label d-block">Covering Letter Needed</label>
+        <div class="btn-group btn-group-sm btn-group-toggle" btnRadioGroup formControlName="is_cover_letter_needed">
+          <label [ngClass]="profileCreateFormGroup.controls.is_cover_letter_needed.value == true ? 'btn btn-secondary active' : 'btn btn-secondary'"
+            btnRadio="true">Yes</label>
+          <label [ngClass]="'btn btn-secondary active'" btnRadio="false">No</label>
+        </div>
+      </div>
+      <div *ngIf="(profileCreateFormGroup.get('is_cover_letter_needed').value == 'true')">
+        <a href="#">
+          <small class="form-text text-primary">Edit Covering Letter Template</small>
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="col">
+      <div class="form-group">
+        <label class="col-form-label d-block">Print out Needed</label>
+        <div class="btn-group btn-group-sm btn-group-toggle" btnRadioGroup formControlName="is_printouts_needed">
+          <label [ngClass]="profileCreateFormGroup.controls.is_printouts_needed.value == true ? 'btn btn-secondary active' : 'btn btn-secondary'"
+            btnRadio="true">Yes</label>
+          <label [ngClass]="'btn btn-secondary active'" btnRadio="false">No</label>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="col">
+      <div class="form-group">
+        <label class="col-form-label d-block">Printout Needed</label>
+        <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio"  value="true" formControllerName="is_printouts_needed"> Yes
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio"  value="false" formControllerName="is_printouts_needed"> No
+          </label>
+        </div> 
+      </div>
+    </div> -->
+
+
+
+    <div class="col">
+
+    </div>
+
+    <div class="col">
+      <div class="form-group float-right">
+        <button type="button" (click)="CloseForm($event)" class="btn btn-defualt mt-4">Cancel</button>
+        <button type="submit" class="btn btn-danger mt-4" [disabled]="!profileCreateFormGroup.valid">Save</button>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+<!-- <br>Value: {{ profileCreateFormGroup.value | json }} -->

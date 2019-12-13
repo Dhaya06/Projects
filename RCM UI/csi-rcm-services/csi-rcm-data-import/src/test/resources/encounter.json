@@ -1,0 +1,44 @@
+
+{
+    "referenceNo": "123123",
+    "hospitalGroupId": "1",
+    "invoiceNo": "1002",
+    "encounterID": "E002",
+    "invoiceDateTime": null,
+    "patientID": null,
+    "payerType": null,
+    "payerId": null,
+    "companyShare": null,
+    "clinicID": null,
+    "doctorID": null,
+    "facilityID": null,
+    "specialityId": null,
+    "transferedFromFacilityId": null,
+    "transferedToFacilityId": null,
+    "invoiceGross": null,
+    "invoiceNet": null,
+    "patientShare": null,
+    "patientPaid": null,
+    "approvalNo": null,
+    "encounterType": null,
+    "encounterStartType": null,
+    "encounterEndType": null,
+    "serviceStartTime": null,
+    "serviceEndTime": null,
+    "insuranceMemberId": null,
+    "memberRelation": null,
+    "memberRelationTo": null,
+    "patientIdentityNo": null,
+    "companyApprovalNo": null,
+    "remarks": null,
+    "encounterDiagnosis": [
+        {
+            "id": "5a5e0c9931d5d95cc4c2580f",
+            "referenceNo": "2134-asd",
+            "diagnosisType": "234",
+            "diagnosisCode": "SSD",
+            "remarks": null
+        }
+    ],
+    "encounterActivities": []
+}

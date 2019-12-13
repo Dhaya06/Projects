@@ -1,0 +1,53 @@
+@media screen and (min-width:1106px) and (max-width: 1326px) {
+    .hidden-menu .widget-box .widget-img,.widget-box .widget-img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1326px) {
+    .hidden-menu .widget-box, .widget-box{
+        min-height: 160px;
+        text-align: center;
+    }
+    .hidden-menu .widget-box .widget-img, .widget-box .widget-img{
+        float: none;
+    }
+    .hidden-menu .widget-box .widget-details,.widget-box .widget-details{
+        float: none;
+        text-align: center;
+        margin-top: 10px;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .table thead th{
+        white-space: nowrap;
+    }
+}
+@media screen and (min-width: 992px) {
+    .content-area{
+      margin-left: 0px;  
+    }	
+}
+@media screen and (max-width: 991px) {
+    .dragdropfilters, .droppablearea{
+        margin-bottom: 10px;
+    }
+    .content-area-top{
+        padding-right: 0px;
+        z-index: 1001;
+        left: 0px;
+    }
+    .hidden-menu .widget-box,.widget-box{
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 767px){
+    
+    #navbarsExampleDefault.navbar-collapse{
+        display: flex;
+        flex-basis: unset;
+    }
+
+}

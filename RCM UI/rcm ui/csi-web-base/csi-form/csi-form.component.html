@@ -1,0 +1,42 @@
+
+<form [formGroup]="_csiFormGroup" (submit)="submitForm()">
+    
+    <csi-page-layout [componentId]="_componentId" [layout]="_layout" [cellContents]="cell_content" >
+        
+    </csi-page-layout>
+
+<!-- 
+<csi-text-box
+        [csiFormGroup] = "_csiFormGroup"
+        [csiControllerName]="'username'"
+        [label]="'Username'" 
+        [classes] = "'form-control'"
+        [disabled] = "false"
+        [placeholder] = "'Username Placeholder'"
+    >
+
+    <error-messages [control]="_csiFormGroup.controls.username"></error-messages>
+</csi-text-box>
+
+<csi-password-box
+[csiFormGroup] = "_csiFormGroup"
+[csiControllerName]="'password'"
+[label]="'Password'" 
+[classes] = "'form-control'"
+[disabled] = "false"
+[placeholder] = "'Password Placeholder'"
+>
+
+<error-messages [control]="_csiFormGroup.controls.password"></error-messages>
+</csi-password-box> -->
+
+
+    <!-- Submit Area -->
+    <div>
+        <input type="submit" value="Save" [disabled]="!_csiFormGroup.valid" class="btn btn-primary">
+    </div>
+
+</form>
+
+<p *ngIf="!_csiFormGroup.valid">form is invalid!</p>
+{{_csiFormGroup.value | json}}

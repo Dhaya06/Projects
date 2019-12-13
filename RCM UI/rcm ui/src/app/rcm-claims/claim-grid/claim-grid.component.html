@@ -1,0 +1,110 @@
+<div class="card-header">
+        <div class="card-header-name">
+            <a href="#" onclick="toggleSearch()"><i class="material-icons">keyboard_backspace</i></a>
+            Total Claims ({{dataSet.length}})
+        </div>
+        <div class="card-header-config float-right">
+            <span *ngIf='isClaimReview' >
+                <a class="config-link-text" (click)="openModal(template)"> Submit claims</a>
+                <a class="" href="#" data-toggle="dropdown">
+                    <i class="material-icons">more_vert</i>
+                </a>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                <div class="drag&dropelements">
+                    <ul>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck120" checked>
+                                <label class="custom-control-label" for="customCheck120">Insurance Group</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck121" checked>
+                                <label class="custom-control-label" for="customCheck121">Company</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck122" checked>
+                                <label class="custom-control-label" for="customCheck122">Encounter Number</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck123" checked>
+                                <label class="custom-control-label" for="customCheck123">Encounter Type</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck124" checked>
+                                <label class="custom-control-label" for="customCheck124">Member ID</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck125" checked>
+                                <label class="custom-control-label" for="customCheck125">Patient ID</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck124" checked>
+                                <label class="custom-control-label" for="customCheck124">Claim Status</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck125" checked>
+                                <label class="custom-control-label" for="customCheck125">Assign To</label>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="btn btn-secondary btn-sm">Reset</button>
+                    <button type="button" class="btn btn-primary btn-sm">Save Layout</button>
+                </div>
+            </div>-
+        </div>
+</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <csi-grid [data]="dataSet" [columns]="columns" [options]="gridOptions"></csi-grid>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<ng-template #thumbnailTemplate let-data="item">
+    <a [routerLink]="['/claim',data.id]">{{data.encounterId}}</a>
+    <!--<span class="action-link" (click)="update(data.encounterId)" >{{data.encounterId}}</span>-->
+</ng-template>
+<ng-template #layer1Template let-dataItem="item" let-formGroup="formGroup">
+    <csi-grid [data]="dataItem.data" [columns]="columns"   [options]="gridOptions2"></csi-grid>
+</ng-template>
+<ng-template #layer1Template2 let-dataItem="item" let-formGroup="formGroup">
+    <csi-grid [data]="dataItem.data" [columns]="columns"  [options]="gridOptions3" ></csi-grid>
+</ng-template>
+
+<ng-template #insuranceGroup  let-data="item">
+  {{getValueFromList(this.insuranceGroups,data.key).name}}
+</ng-template>
+<ng-template #company let-data="item">
+    {{getValueFromList(this.insuranceCompanies,data.key).name}}
+</ng-template>
+<ng-template #encounterType let-data="item">
+    {{getValueFromList(this.claimLabelTypes,data.encounterType).name}}
+</ng-template>
+<ng-template #claimStatus  let-data="item" >
+    {{getStatusFromList(data.claimStatus).name}}
+</ng-template>
+
+<ng-template #template>
+    <app-claim-submission #submission (hideModal)="hideModal()"></app-claim-submission>
+</ng-template>
+<!-- <ng-container [ngTemplateOutlet]="template"></ng-container> -->

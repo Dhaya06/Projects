@@ -1,0 +1,244 @@
+
+    <div class="card-header">
+        <div class="card-header-name">Search</div>
+        <div class="card-header-config float-right keep-open">
+            <a class="" href="#" data-toggle="dropdown"><i class="material-icons">more_vert</i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                <div class="drag&dropelements">
+                    <ul>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck100" checked>
+                                <label class="custom-control-label" for="customCheck100">Facility</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck101" checked>
+                                <label class="custom-control-label" for="customCheck101">Period</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck102" checked>
+                                <label class="custom-control-label" for="customCheck102">Claim Label</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck103" checked>
+                                <label class="custom-control-label" for="customCheck103">Claim Label Type</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck104" checked>
+                                <label class="custom-control-label" for="customCheck104">Claim Status</label>
+                            </div> 
+                        </li>
+                        
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck106" checked>
+                                <label class="custom-control-label" for="customCheck106">Insurance Group</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck107" checked>
+                                <label class="custom-control-label" for="customCheck107">Company ID</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck107" checked>
+                                <label class="custom-control-label" for="customCheck107">Company Name</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck108" checked>
+                                <label class="custom-control-label" for="customCheck108">Policy Number</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck109" checked>
+                                <label class="custom-control-label" for="customCheck109">Member ID</label>
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck110" checked>
+                                <label class="custom-control-label" for="customCheck110">Encounter Type</label>
+                            </div> 
+                        </li>
+                    </ul> 
+                    
+                    <button type="button" class="btn btn-secondary btn-sm">Reset</button>
+                    <button type="button" class="btn btn-primary btn-sm">Save Layout</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <form  [formGroup]="searcClaim" (ngSubmit)="onSubmit()" >
+    <div class="card-body">
+        
+            <div class="form-group">
+                <label class="col-form-label">Facility</label>
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'facilities'"
+                    [label]="'Assignee'" 
+                    [options] = "facilities"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple>  
+            </div>
+            <div class="form-group periodwrapper">
+                <label class="col-form-label">Period 
+                    <span>
+                        <select class="form-control-sm" formControlName="dateFilterField" >
+                            <option value="serviceDate" >Service Date</option>
+                            <option value="invoiceDate" >Invoiced Date</option>
+                        </select>
+                    </span>
+                </label>
+                <div class="input-group datepickerwrapper">
+                    <div class="input-group datepickerwrapper">
+                        <input class="form-control" placeholder="Select Period" #drp="bsDaterangepicker" 
+                        bsDaterangepicker formControlName="dateRange" [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD' }" >
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="material-icons">today</i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Claim Label</label>
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'claimLabels'"
+                    [label]="'ClaimLabel'" 
+                    [options] = "claimLabels"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple>  
+            </div>
+            
+            <div class="form-group">
+                <label class="col-form-label">Claim Label Type</label>
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'claimLabelTypes'"
+                    [label]="'ClaimLabelType'" 
+                    [options] = "claimLabelTypes"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple> 
+            </div>
+            
+            <div class="form-group">
+                <label class="col-form-label">Claim Status</label>
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'claimStatus'"
+                    [label]="'claimStatus'" 
+                    [options] = "claimStatus"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple>      
+            </div>
+            
+            <div class="form-group">
+                <label class="col-form-label">Insurance Group</label>
+                <!--<input type="text" class="form-control" value="ANY">-->
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'insuranceGroups'"
+                    [label]="'insuranceGroups'" 
+                    [options] = "insuranceGroups"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple>   
+            </div>
+            
+            <!-- <div class="form-group">
+                <label class="col-form-label">Company ID</label>
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'companyIDs'"
+                    [label]="'insuranceCompanies'" 
+                    [options] = "insuranceCompanyIds"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple> 
+            </div> -->
+            
+            <div class="form-group">
+                <label class="col-form-label">Company Name</label>
+                <!--<input type="text" class="form-control" value="ANY">-->
+                <csi-select-box-multiple
+                    [csiFormGroup] = "searcClaim"
+                    [csiControllerName]="'companyNames'"
+                    [label]="'insuranceCompanies'" 
+                    [options] = "insuranceCompanies"
+                    [classes] = "'form-control'"
+                ></csi-select-box-multiple> 
+            </div>
+         <!--   
+            <div class="form-group">
+                <label class="col-form-label">Policy Number</label>
+                
+                <csi-select-box-multiple
+                [csiFormGroup] = "searcClaim"
+                [csiControllerName]="'policies'"
+                [label]="'policy'" 
+                [options] = "policy"
+                [classes] = "'form-control'"
+                ></csi-select-box-multiple> 
+            </div>
+        
+            <div class="form-group">
+                <label class="col-form-label">Member ID</label>
+                <csi-select-box-multiple
+                [csiFormGroup] = "searcClaim"
+                [csiControllerName]="'memberIds'"
+                [label]="'memberids'" 
+                [options] = "memberids"
+                [classes] = "'form-control'"
+                ></csi-select-box-multiple> 
+            </div>
+            -->
+            <div class="form-group">
+                <label class="col-form-label">Encounter Type</label>
+                <csi-select-box-multiple
+                [csiFormGroup] = "searcClaim"
+                [csiControllerName]="'encounterTypes'"
+                [label]="'encounterTypes'" 
+                [options] = "encounterTypes"
+                [classes] = "'form-control'"
+                ></csi-select-box-multiple>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Clinic</label>
+                <!--<input type="text" class="form-control" value="ANY">-->
+                <csi-select-box-multiple
+                [csiFormGroup] = "searcClaim"
+                [csiControllerName]="'clinics'"
+                [label]="'clinics'" 
+                [options] = "clinics"
+                [classes] = "'form-control'"
+                ></csi-select-box-multiple>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Assignee</label>
+                <!--<input type="text" class="form-control" value="ANY">-->
+                <csi-select-box-multiple
+                [csiFormGroup] = "searcClaim"
+                [csiControllerName]="'assignees'"
+                [label]="'assignee'" 
+                [options] = "assignee"
+                [classes] = "'form-control'"
+                ></csi-select-box-multiple>
+            </div>
+        
+    </div>
+    <div class="card-footer text-center">
+        <button type="submit" class="btn search-btn btn btn-danger"  >Search</button>
+    </div>
+</form>

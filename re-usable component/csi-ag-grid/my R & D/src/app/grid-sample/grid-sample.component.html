@@ -1,0 +1,16 @@
+<ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 100%;"
+    id="myGrid"
+    class="ag-theme-material"
+    [columnDefs]="columnDefs"
+    [groupSelectsChildren]="true"
+    [groupDefaultExpanded]="groupDefaultExpanded"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [defaultColDef]="defaultColDef"
+    [rowData]="rowData"
+    [rowSelection]="rowSelection"
+    (gridReady)="onGridReady($event)"
+    >
+  
+  </ag-grid-angular>

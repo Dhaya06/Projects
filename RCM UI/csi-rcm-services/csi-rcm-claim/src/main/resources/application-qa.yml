@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/claim
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+      database: POSTGRESQL
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    default-property-inclusion: NON_NULL
+    date-format: yyyy-MM-dd
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+postgresql:
+  driver: org.postgresql.Driver
+server:
+  port: 10011
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: false
+    healthcheck:
+      enabled: true
+feign:
+  hystrix:
+    enabled: true
+context-path: /claim

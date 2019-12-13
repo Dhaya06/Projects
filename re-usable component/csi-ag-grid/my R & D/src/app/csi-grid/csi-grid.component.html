@@ -1,0 +1,113 @@
+ <!-- ag-grid CSS -->
+ <link href="https://unpkg.com/ag-grid/dist/styles/ag-grid.css" rel="stylesheet"/>
+ <link href="https://unpkg.com/ag-grid/dist/styles/theme-material.css" rel="stylesheet"/>
+
+ <!-- Material Design -->
+ <link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+
+<div style="padding-left:80px">
+
+    <div *ngIf="firstGrid"> 
+<ag-grid-angular style="width: 900px; height: 400px;"
+                 class="ag-fresh"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 [gridOptions]="gridOptions"
+                 [enableSorting]=gridOptions.enableSorting
+                 [floatingFilter]="gridOptions.floatingFilter"
+                 [enableFilter]="gridOptions.enableFilter"
+                 [treeData]="gridOptions.treeData"
+                 [singleClickEdit]="true"
+                 [pagination]="true"
+                
+                 [defaultColDef]="defaultColDef"
+                 [columnTypes]="columnTypes"
+                 [groupDefaultExpanded]="groupDefaultExpanded"
+                 [getDataPath]="getDataPath"
+                 [autoGroupColumnDef]="autoGroupColumnDef"
+                 [getRowHeight]="getRowHeight"
+                 (gridReady)="onGridReady($event)">
+</ag-grid-angular>
+</div>
+<br>
+
+<button (click)="firstGrid=false; secondGrid=true" class="btn btn-primary">Show More</button>
+<button (click)="firstGrid=false;secondGrid=false;loopGrid=true; " class="btn btn-success">Show Loop</button>
+
+
+<button (click)="btSelectedEditTest()" class="btn btn-default">Edit Selected</button>
+<button (click)="btStartEditClick()" class="btn btn-success">Start Edit</button>
+<button (click)="getSelectedRow()" class="btn btn-danger">get selected rows   </button><br><br>
+<button (click)="changeTD()" class="btn btn-warn">Change TD  </button><br><br>
+
+<div *ngIf="secondGrid">
+
+                <ag-grid-angular style="width: 820px; height: 300px;"
+                                 class="ag-fresh"
+                                 #agGrid id="myGrid"
+                                 [getRowHeight]="getRowHeight"
+                                 [gridOptions]="gridOptions2"
+                                 [getRowNodeId]="getRowNodeId"
+                                 [columnDefs]="columnDefs2"
+                                 (rowSelected)="onRowSelected($event)"
+                                 [suppressDragLeaveHidesColumns]="false"
+                                 (onSelectionChanged)="onSelectionChanged()"
+                                 [singleClickEdit]="true"
+                                 [suppressRowClickSelection]=true
+                                 (gridReady)="onGridReady2($event)">
+                </ag-grid-angular>
+          
+
+</div>
+<div *ngIf="loopGrid">
+
+    <div class="">
+        <div *ngFor="let item of Items">
+                <ag-grid-angular style="width: 900px; height: 300px;"
+                                 class="ag-grid ag-material"
+                                 #agGrid id="myGrid"
+                                 [gridOptions]="gridOptions2"
+                                 [columnDefs]="columnDefs2"
+                                 [groupSelectsChildren]="true"
+                                 [suppressRowClickSelection]="true"
+                                 (rowSelected)="onRowSelected($event)"
+                                 [suppressDragLeaveHidesColumns]="false"
+                                 (onSelectionChanged)="onSelectionChanged()"
+                                 [singleClickEdit]="true"
+                                 (gridReady)="onGridReady2($event)">
+                </ag-grid-angular>
+                </div>
+            </div>
+
+</div>
+
+<!-- <ag-grid-angular style="width: 800px; height: 300px;"
+                 class="ag-fresh"
+                 #sagGrid id="myGrid"
+                 [gridOptions]="gridOptions2"
+                 [columnDefs]="columnDefs2"
+                 [suppressDragLeaveHidesColumns]="true"
+                 (rowSelected)="onRowSelected($event)"
+                 
+                 (onSelectionChanged)="onSelectionChanged($event)"
+
+                 (gridReady)="onGridReady2($event)">
+</ag-grid-angular> -->
+
+
+        <div class="card" style="overflow:auto; width:80%">
+                <div class="card-body">
+
+                   <pre *ngFor=" let item of modalProperty">{{item|json}}</pre >
+                </div>
+        </div>
+
+</div>
+
+
+
+
+

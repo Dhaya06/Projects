@@ -1,0 +1,192 @@
+[{
+       "id": "5a5f26c9064de05964313baa",
+       "referenceNo": "76123024",
+       "processed": false,
+       "hospitalGroupId": "KSA",
+       "invoiceNo": "1003532",
+       "encounterID": "EN00222",
+       "invoiceDateTime": "2012-12-01 10:10:12",
+       "patientID": "08627",
+       "payerType": "GROUP",
+       "payerId": "P123",
+       "companyShare": 80,
+       "clinicID": "C110",
+       "doctorID": "D6706531",
+       "facilityID": "F68013",
+       "specialityId": "Urology",
+       "transferedFromFacilityId": "F68015",
+       "transferedToFacilityId": "F68013",
+       "invoiceGross": 120,
+       "invoiceNet": 100,
+       "patientShare": 20,
+       "patientPaid": true,
+       "approvalNo": null,
+       "encounterType": "OP",
+       "encounterStartType": "OP",
+       "encounterEndType": "OP",
+       "serviceStartTime": "2018-01-17 15:35:12",
+       "serviceEndTime": "2018-01-17 15:50:12",
+       "insuranceMemberId": "IN100-200-389",
+       "memberRelation": "Principal",
+       "memberRelationTo": null,
+       "patientIdentityNo": null,
+       "remarks": null,
+       "encounterDiagnosis": [
+           {
+               "id": "5a5f26c9064de05964313bae",
+               "referenceNo": "2134-asd",
+               "processed": false,
+               "diagnosisType": "234",
+               "diagnosisCode": "SSD",
+               "remarks": null,
+               "encounterId": "5a5f26c9064de05964313baa"
+		   },
+		   {
+			"id": "5sajjhf342fhhfn3e",
+			"referenceNo": "2134-asd",
+			"processed": true,
+			"diagnosisType": "234",
+			"diagnosisCode": "SSD",
+			"remarks": "Redesorders must be claimed at entry level",
+			"encounterId": "5sajjhf342fhhfn3e"
+		   }
+       ],
+       "appointments":[
+			{
+				"appointmentNo":"APP001",
+				"invoices":[
+					{
+						"invoiceNo":"INC001",
+						"encounterActivities": [
+							{
+								"activityCode":"CPT-10.1",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							},
+							{
+								"activityCode":"CPT-10.2",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							}
+						]
+					},
+					{
+						"invoiceNo":"INC002",
+						"encounterActivities": [
+							{
+								"activityCode":"CPT-10.1",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							},
+							{
+								"activityCode":"CPT-10.2",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							}
+						]
+					}
+				]
+			},
+			{
+				"appointmentNo":"APP002",
+				"invoices":
+				[
+					{
+						"invoiceNo":"INC003",
+						"encounterActivities": [
+							{
+								"activityCode":"CPT-10.1",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							},
+							{
+								"activityCode":"CPT-10.2",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							}
+						]
+					},
+					{
+						"invoiceNo":"INC004",
+						"encounterActivities":
+						[
+							{
+								"activityCode":"CPT-10.1",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							},
+							{
+								"activityCode":"CPT-10.2",
+								"orderDate":"2017-01-17 15:50",
+								"performedStatus":"Not-Performed",
+								"servicePerformedDate":"01/01/2018",
+								"quantity":1,
+								"activityNet":12.00,
+								"activityGross":10.00,
+								"patientShare":10.00,
+								"paymentAmount":20.00,
+								"orderingClinician":"EN10029",
+								"priorAuthorizationID":"PA-100"
+							}
+						]
+					}
+				]
+			}
+	   ]
+}]

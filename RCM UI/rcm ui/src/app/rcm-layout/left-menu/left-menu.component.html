@@ -1,0 +1,28 @@
+<div class="sidebar" id="sidebar">
+    <!--<div class="sidebar-top">
+        <a class="logo" href="#">
+      <img src="../assets/logo.png" alt="Logo" class="img-responsive"></a> 
+    </div>-->
+    <div class="sidebar-bottom">
+        <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+        <a [routerLink]="['/claims/claimreview']" routerLinkActive="active">Claim Review</a>
+        <a [routerLink]="['/claims']" routerLinkActive="active">Claims</a>
+        <a [routerLink]="['/taskmanager']" routerLinkActive="active">Task Manager</a>
+        <a [routerLink]="['/rules']" routerLinkActive="active">Rules</a>
+        <a [routerLink]="['/payerprofile']" routerLinkActive="active">Payer Profile</a>
+        
+        
+     
+          <!-- <expandable-list>
+            <expandable-list-item>
+              <span >Primary Title</span> 
+              <a title>Master Data</a> 
+              <a item [routerLink]="['/payerprofile']" routerLinkActive="active">Payer Manager</a>
+              <a item href="http://www.goo.gl">Google</a>
+              <expandable-list-divider></expandable-list-divider>
+              <a item href="http://www.goo.gl">Google</a> 
+            </expandable-list-item>
+          </expandable-list> -->
+    </div>
+    
+</div>
